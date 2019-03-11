@@ -1,0 +1,8 @@
+# GIT
+**/.git/
+**/.gitignore
+**/.gitmodules
+
+# Docker
+**/Dockerfile
+**/.dockerignore

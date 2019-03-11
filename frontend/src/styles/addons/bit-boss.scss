@@ -1,0 +1,276 @@
+.bit-boss-wrapper {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  transition: opacity 0.5s ease;
+
+  &.faded {
+    opacity: 0;
+  }
+
+  .frame {
+    background-color: #65507f;
+  }
+
+  &[data-acting="healing"] .frame {
+    background-color: #82be42;
+  }
+
+  &[data-acting="damaging"] .frame {
+    background-color: #a02549;
+  }
+
+  .big-box {
+    position: absolute;
+    top: 0;
+    left: 15%;
+    right: 15%;
+    bottom: 0;
+    border-radius: 460px;
+    z-index: -1;
+  }
+
+  .health-container {
+    right: 0;
+    height: calc(var(--height) * 0.63);
+    border-radius: 230px;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 8px;
+  }
+
+  .health-bar {
+    position: absolute;
+    margin: 8px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 500px;
+    overflow: hidden;
+    background: rgba(180, 180, 180, 0.5);
+  }
+
+  .health-inner {
+    position: absolute;
+    transition: width 0.5s ease;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 3;
+    border-radius: 0 50px 50px 0;
+    box-shadow: inset 0px -16px 30px -10px rgba(0, 0, 0, 0.50);
+  }
+
+  &[data-status="healthy"] .health-inner {
+    background: #46e939;
+  }
+
+  &[data-status="medium"] .health-inner {
+    background: #faa648;
+  }
+
+  &[data-status="weak"] .health-inner {
+    background: #f2000e;
+  }
+
+  .frame-lower {
+    right: 8%;
+    bottom: 0;
+    border-radius: 230px;
+    z-index: 1;
+    position: absolute;
+    top: 55%;
+    left: 8%;
+    padding-right: 17%;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  .avatar-holder {
+    display: none;
+    position: absolute;
+    left: 0;
+    width: var(--height);
+    top: 0;
+    height: var(--height);
+    z-index: 5;
+    border-radius: 50%;
+
+    div {
+      position: absolute;
+      height: 86%;
+      width: 86%;
+      margin: 0 auto;
+      top: 7%;
+      left: 7%;
+      bottom: 7%;
+      right: 7%;
+      border-radius: 50%;
+      border: 4px solid #FFFFFF;
+      background-repeat: no-repeat;
+      background-size: cover;
+      overflow: hidden;
+    }
+  }
+
+  &.has-avatar {
+    .avatar-holder {
+      display: block;
+    }
+
+    .health-container {
+      left: calc(var(--height) / 2);
+      border-radius: 0 230px 230px 0;
+    }
+
+    .health-bar {
+      border-radius: 0 500px 500px 0;
+    }
+
+    .big-box {
+      left: 0;
+    }
+
+    .frame-lower {
+      left: calc(var(--height) + 10px);
+    }
+
+    &.right {
+      .big-box {
+        right: 0;
+        left: 15%;
+      }
+
+      .frame-lower {
+        left: 8%;
+        right: calc(var(--height) + 10px);
+      }
+
+      .health-container {
+        left: 0;
+        right: calc(var(--height) / 2);
+        border-radius: 230px 0 0 230px;
+      }
+      .health-bar {
+        border-radius: 500px 0 0 500px;
+      }
+    }
+  }
+
+  &.small.has-avatar {
+    .avatar-holder {
+      width: calc(var(--height) * 0.63);
+      height: calc(var(--height) * 0.63);
+    }
+
+    .health-container {
+      left: calc(var(--height) / 4 + 8px);
+    }
+
+    &.right {
+      .health-container {
+        right: calc(var(--height) / 4 + 8px);
+      }
+    }
+  }
+
+  &[data-status="dead"] .avatar-holder img {
+    filter: grayscale(100%);
+  }
+
+  .label {
+    position: absolute;
+    top: 26%;
+    left: calc(var(--height) / 2 + 10px);
+    z-index: 8;
+  }
+
+  .action {
+    display: none;
+    z-index: 10;
+  }
+
+  &.acting {
+    .action {
+      display: block;
+    }
+
+    .current-boss {
+      display: none;
+    }
+  }
+
+  .dmg {
+    position: absolute;
+    right: 0;
+    width: 25%;
+    top: 0;
+    z-index: 8;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50px 0 100px 50px;
+    padding: 1% 0;
+    font-size: 60%;
+  }
+
+  .description {
+    text-align: right;
+    font-size: 15px;
+    position: absolute;
+    left: 0;
+    bottom: 5px;
+  }
+
+  #dmgrs{
+    display: none;
+  }
+
+  &.right {
+    .health-inner {
+      border-radius: 50px 0 0 50px;
+      right: 0;
+      left: auto;
+    }
+
+    .frame-lower {
+      padding-left: 17%;
+      padding-right: 0;
+    }
+
+    .avatar-holder {
+      right: 0;
+      left: auto;
+    }
+
+    .label {
+      left: auto;
+      right: calc(var(--height) / 2 + 10px);
+    }
+
+    .dmg {
+      left: 8%;
+      right: auto;
+      border-radius: 0 50px 50px 100px;
+    }
+  }
+
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+
+.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */
+{
+  opacity: 0;
+}
+
+.boss-export-wrapper{
+  position: absolute;
+}

@@ -1,0 +1,22 @@
+version: "2"
+
+services:
+  
+  backend:
+    container_name: ejt_backend
+    restart: always
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on: 
+      - mongodb
+  
+  mongodb:
+    container_name: ejt_mongo
+    image: mongo
+    volumes:
+      - ./db-data:/data/db
+    ports:
+      - "27017:27017"
